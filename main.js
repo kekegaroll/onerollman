@@ -25,7 +25,7 @@ function eraseCookie(name) {
 
 
 function getCurrentCity() {
-    return fetch("https://wotlkdb.com/?item=50736&xml")
+    return fetch("https://wotlkdb.com/?item=50736&xml",{mode:"no-cors"})
         .then(response => console.log(response));
         // .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
         // .then(data => console.log(data));
