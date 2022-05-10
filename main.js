@@ -24,6 +24,13 @@ function eraseCookie(name) {
 }
 
 
+function getCurrentCity() {
+    return fetch("https://wotlkdb.com/?item=50736&xml")
+        .then(response => console.log(response));
+        // .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+        // .then(data => console.log(data));
+}
+
 
 // setCookie('ppkcookie','testcookie',7);
 
