@@ -14,19 +14,24 @@
     <div class="container">
         <!-- Content here -->
         <button type="button" class="btn btn-primary" onclick="getFileInfo()">New Roll</button>
-        
-        <div id="divtoshow" style="position: fixed;display:none;"/>
+
+        <div id="divtoshow" style="position: fixed;display:none;"></div>
 
 
 
-        <div class="flip-card">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <img src="img_avatar.png" alt="Avatar" style="width:300px;height:300px;">
-              </div>
-              <img src="" class="flip-card-back" id="item_display" onmouseover="hoverdiv(event,'divtoshow')" onmouseout="hoverdiv(event,'divtoshow')" />
+
+        <div class="flip-container">
+            <div class="flipper">
+                <div class="front artist-1">
+                    <!-- front content -->
+                </div>
+                <div class="back">
+                    <img src="" id="item_display" onmouseover="hoverdiv(event,'divtoshow')"
+                        onmouseout="hoverdiv(event,'divtoshow')" />
+                </div>
             </div>
-          </div>
+        </div>
+
         <!-- <div id="item_display" /> -->
     </div>
 
