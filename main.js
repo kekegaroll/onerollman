@@ -26,13 +26,49 @@ function eraseCookie(name) {
     document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
+$('.flip-container .flipper').click(function() {
+    $(this).closest('.flip-container').toggleClass('hover');
+    $(this).css('transform, rotateY(180deg)');
+});
 
-function readTextFile(file) {
-    fetch('file:///D:data/17.html', { mode: 'no-cors' })
-        .then(response => response.text())
-        .then(text => console.log(text))
-    console.log()
 
+async function getFileInfo() {
+    var text = await (await _readTextFile(17)).split("#");
+
+    var img = ["https://kekegaroll.github.io/onerollman/data/img/", text[0]].join('');
+    document.getElementById("item_display").src= img;
+
+
+
+
+    var tag_id = document.getElementById('divtoshow');
+    tag_id.innerHTML = text[1];
+
+    console.log(text);
+}
+
+function hoverdiv(e, divid) {
+
+    var left = e.clientX + "px";
+    var top = e.clientY + "px";
+
+    var div = document.getElementById(divid);
+
+    div.style.left = left;
+    div.style.top = top;
+
+    $("#" + divid).toggle();
+    return false;
+}
+
+function _readTextFile(id) {
+    var html = [
+        "https://kekegaroll.github.io/onerollman/data/",
+        id,
+        ".html"
+    ];
+    return fetch(html.join(""))
+        .then(response => response.text());
 }
 
 
