@@ -1,32 +1,15 @@
-let basePath = ''
-let collection = {}
+import { _stats_actualitems } from 'https://kekegaroll.github.io/onerollman/statsLoader.js'
+import { ItemClassRec } from 'https://kekegaroll.github.io/onerollman/statsLoader.js'
+import { ItemLevelRec } from 'https://kekegaroll.github.io/onerollman/statsLoader.js'
+import { ItemQualityRec } from 'https://kekegaroll.github.io/onerollman/statsLoader.js'
+import { ItemSlotRec } from 'https://kekegaroll.github.io/onerollman/statsLoader.js'
 
-function setCookie(name, value, days) {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "") + expires + "; path=/";
-}
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-}
+window.addEventListener('load', () => {
+    document.getElementById('roll-multi-nu').addEventListener('click', getFileInfo());
+});
 
 
-function eraseCookie(name) {
-    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-}
-
-
+roll - multi - nu
 var cards = document.querySelectorAll('.flipcard');
 
 [...cards].forEach((card) => {
@@ -48,6 +31,12 @@ async function getFileInfo() {
     tag_id.innerHTML = text[1];
 
     console.log(text);
+
+    console.log(_stats_actualitems);
+    console.log(ItemClassRec);
+    console.log(ItemLevelRec);
+    console.log(ItemQualityRec);
+    console.log(ItemSlotRec);
 }
 
 function hoverdiv(e, divid) {
@@ -73,11 +62,3 @@ function _readTextFile(id) {
     return fetch(html.join(""))
         .then(response => response.text());
 }
-
-
-// setCookie('ppkcookie','testcookie',7);
-
-// var x = getCookie('ppkcookie');
-// if (x) {
-//     [do something with x]
-// }
