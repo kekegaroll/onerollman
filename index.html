@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="st.css">
 
 </head>
 
@@ -15,30 +16,34 @@
         <!-- Content here -->
         <button type="button" class="btn btn-primary" onclick="getFileInfo()">New Roll</button>
 
-        <div id="divtoshow" style="position: fixed;display:none;"></div>
+        <div id="divtoshow" style="position: fixed;display:none;z-index: 1;"></div>
 
 
+        
 
-
-        <div class="flip-container">
-            <div class="flipper">
-                <div class="front artist-1">
-                    <!-- front content -->
+        <div class="scene scene--card" data-tilt 
+        data-tilt-max="20" 
+        data-tilt-speed="100" 
+        data-tilt-perspective="1000">
+            <div class="flipcard">
+                <div class="card__face card__face--front">
+                    <img src="https://kekegaroll.github.io/onerollman/temp_card.jpg" class="flipcard-medium">
                 </div>
-                <div class="back">
-                    <img src="" id="item_display" onmouseover="hoverdiv(event,'divtoshow')"
+                <div class="card__face card__face--back">
+                    <img src="" class="flipcard-medium" id="item_display" onmouseover="hoverdiv(event,'divtoshow')"
                         onmouseout="hoverdiv(event,'divtoshow')" />
                 </div>
             </div>
         </div>
 
-        <!-- <div id="item_display" /> -->
     </div>
 
     <!-- <script src="https://github.com/kekegaroll/onerollman/blob/main/jquery-3.6.0.min.js"></script> -->
     <script src="jquery-3.6.0.min.js"></script>
     <!-- <script src="https://github.com/kekegaroll/onerollman/blob/main/main.js"></script> -->
     <script src="main.js"></script>
+    <script src="loader.js"></script>
+    <script src="vanilla-tilt.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

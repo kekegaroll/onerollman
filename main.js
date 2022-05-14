@@ -1,5 +1,5 @@
 let basePath = ''
-
+let collection = {}
 
 function setCookie(name, value, days) {
     var expires = "";
@@ -26,17 +26,20 @@ function eraseCookie(name) {
     document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
-$('.flip-container .flipper').click(function() {
-	$(this).closest('.flip-container').toggleClass('hover');
-    $(this).css('transform, rotateY(180deg)');
-});
 
+var cards = document.querySelectorAll('.flipcard');
+
+[...cards].forEach((card) => {
+    card.addEventListener('click', function () {
+        card.classList.add('is-flipped');
+    });
+});
 
 async function getFileInfo() {
     var text = await (await _readTextFile(17)).split("#");
 
     var img = ["https://kekegaroll.github.io/onerollman/data/img/", text[0]].join('');
-    document.getElementById("item_display").src= img;
+    document.getElementById("item_display").src = img;
 
 
 
