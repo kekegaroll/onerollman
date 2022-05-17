@@ -1,15 +1,8 @@
-import { _stats_actualitems } from 'https://kekegaroll.github.io/onerollman/statsLoader.js'
-import { ItemClassRec } from 'https://kekegaroll.github.io/onerollman/statsLoader.js'
-import { ItemLevelRec } from 'https://kekegaroll.github.io/onerollman/statsLoader.js'
-import { ItemQualityRec } from 'https://kekegaroll.github.io/onerollman/statsLoader.js'
-import { ItemSlotRec } from 'https://kekegaroll.github.io/onerollman/statsLoader.js'
-
 window.addEventListener('load', () => {
-    document.getElementById('roll-multi-nu').addEventListener('click', getFileInfo());
+    // document.getElementById('roll-multi-nu').addEventListener('click', getMultiRollNU());
 });
 
 
-roll - multi - nu
 var cards = document.querySelectorAll('.flipcard');
 
 [...cards].forEach((card) => {
@@ -18,25 +11,26 @@ var cards = document.querySelectorAll('.flipcard');
     });
 });
 
-async function getFileInfo() {
-    var text = await (await _readTextFile(17)).split("#");
+async function getMultiRollNU() {
+    var text;
+    while (true) {
+        try {
+            text = (await readTF([
+                "https://kekegaroll.github.io/onerollman/data/",
+                randomIntFromInterval(0, 60000),
+                ".html"
+            ].join(''))).toString().split('#');
+            if (typeof text !== 'undefined') { console.log(text); break };
+        } catch { }
+
+    }
+    //collection[text[0]]= 
 
     var img = ["https://kekegaroll.github.io/onerollman/data/img/", text[0]].join('');
     document.getElementById("item_display").src = img;
 
-
-
-
     var tag_id = document.getElementById('divtoshow');
     tag_id.innerHTML = text[1];
-
-    console.log(text);
-
-    console.log(_stats_actualitems);
-    console.log(ItemClassRec);
-    console.log(ItemLevelRec);
-    console.log(ItemQualityRec);
-    console.log(ItemSlotRec);
 }
 
 function hoverdiv(e, divid) {
@@ -51,14 +45,4 @@ function hoverdiv(e, divid) {
 
     $("#" + divid).toggle();
     return false;
-}
-
-function _readTextFile(id) {
-    var html = [
-        "https://kekegaroll.github.io/onerollman/data/",
-        id,
-        ".html"
-    ];
-    return fetch(html.join(""))
-        .then(response => response.text());
 }

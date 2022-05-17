@@ -2,49 +2,8 @@ window.addEventListener('load', () => {
     parseStatsData();
 });
 
-let _stats_actualitems;
-
-let
-    ItemClassRec = {},
-    ItemLevelRec = {},
-    ItemQualityRec = {},
-    ItemSlotRec = {};
-
-function getStatsData() {
-    return fetch("https://kekegaroll.github.io/onerollman/data/000_stats.txt")
-        .then(response => response.text());
-}
-
-class StatItemClassObj {
-    constructor(name, total) {
-        this.name = name.length < 1 ? "Special" : name;
-        this.total = parseInt(total);
-        this.dropchance = fRound(parseFloat(total) / _stats_actualitems * 100);
-    }
-}
-class StatItemLevelObj {
-    constructor(total) {
-        this.total = parseInt(total);
-        this.dropchance = fRound(parseFloat(total) / _stats_actualitems * 100);
-    }
-}
-class StatStatItemQualityObj {
-    constructor(name,total) {
-        this.name = name;
-        this.total = parseInt(total);
-        this.dropchance = fRound(parseFloat(total) / _stats_actualitems * 100);
-    }
-}
-class StatItemSlotObj {
-    constructor(name,total) {
-        this.name = name.length < 1 ? "Special" : name;
-        this.total = parseInt(total);
-        this.dropchance = fRound(parseFloat(total) / _stats_actualitems * 100);
-    }
-}
-
 async function parseStatsData() {
-    var stats = await getStatsData();
+    var stats = await readTF("https://kekegaroll.github.io/onerollman/data/000_stats.txt");
     _stats_actualitems = parseFloat(stats.match(/(.*?actualitems.*$)/gm).toString().split('>')[1].trim());
 
     var _stats_class = stats.match(/(\bclass.*$)/gm);
@@ -74,14 +33,9 @@ async function parseStatsData() {
             /*total*/element.substring(element.lastIndexOf('#') + 1));
     });
 
-    
+    console.log(_stats_actualitems);
+    console.log(ItemClassRec);
+    console.log(ItemLevelRec);
+    console.log(ItemQualityRec);
+    console.log(ItemSlotRec);
 }
-function fRound(x) {
-    return parseFloat(Number(x).toFixed(Math.max(-Math.log10(x) + 1, 2))); //blackmagic
-}
-
-export { _stats_actualitems };
-export { ItemClassRec };
-export { ItemLevelRec };
-export { ItemQualityRec };
-export { ItemSlotRec };
