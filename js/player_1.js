@@ -6,7 +6,7 @@ window.addEventListener('load', () => {
 function loadSaveData(data) {
     data.split('\n').forEach(element => {
         collection[element.substring(0, element.indexOf('>'))] = new CollectionItem(
-
+            
         )});
     return data;
 }
