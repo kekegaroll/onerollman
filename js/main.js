@@ -12,12 +12,13 @@ var cards = document.querySelectorAll('.flipcard');
 });
 
 async function getMultiRollNU() {
-    var text;
+    var text,id;
     while (true) {
         try {
+            id = randomIntFromInterval(0, 60000);
             text = (await readTF([
                 "https://kekegaroll.github.io/onerollman/data/",
-                randomIntFromInterval(0, 60000),
+                id,
                 ".html"
             ].join(''))).toString().split('#');
             if (typeof text !== 'undefined') { console.log(text); break };
@@ -31,6 +32,8 @@ async function getMultiRollNU() {
 
     var tag_id = document.getElementById('divtoshow');
     tag_id.innerHTML = text[1];
+
+    obtainItem(id);
 }
 
 function hoverdiv(e, divid) {

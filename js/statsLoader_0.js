@@ -33,9 +33,9 @@ async function parseStatsData() {
             /*total*/element.substring(element.lastIndexOf('#') + 1));
     });
 
-    console.log(_stats_actualitems);
-    console.log(ItemClassRec);
-    console.log(ItemLevelRec);
-    console.log(ItemQualityRec);
-    console.log(ItemSlotRec);
+    // console.log(_stats_actualitems);
+    // console.log(ItemClassRec);
+    // console.log(ItemLevelRec);
+    // console.log(ItemQualityRec);
+    // console.log(ItemSlotRec);
 }

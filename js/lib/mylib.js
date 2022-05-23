@@ -1,3 +1,9 @@
+//clamp func
+const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+
+//prevent img drag
+$('img').on('dragstart', function (event) { event.preventDefault(); });
+
 /// Weird auto-round for float numbers
 function fRound(x) {
     return parseFloat(Number(x).toFixed(Math.max(-Math.log10(x) + 1, 2))); //blackmagic
@@ -14,6 +20,9 @@ function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+// function length(id) {
+//     return JSON.stringify(['length[', id, ']', c.charCodeAt(0)].join(''));
+// }
 
 //statsLoader_0.js
 class StatItemClassObj {
@@ -46,16 +55,17 @@ class StatItemSlotObj {
 
 //player_1.js
 class CollectionItem {
-    constructor(id, name, copies, datefound, latestdate) {
+    constructor(id, copies, name, ilvl, datefound, latestdate) {
         this.id = parseInt(id);
         this.name = name;
         this.copies = parseInt(copies);
-        this.datefound = datefound.toLocaleDateString("en-US");
-        this.latestdate = latestdate.toLocaleDateString("en-US");
+        this.ilvl = parseInt(ilvl);
+        this.datefound = datefound;
+        this.latestdate = latestdate;
     }
     newFind() {
-        ++copies;
-        datefound = copies == 1 ? new Date().toLocaleDateString("en-US") : datefound;
-        latestdate = new Date().toLocaleDateString("en-US");
+        ++this.copies;
+        this.datefound = this.copies == 1 ? new Date().toLocaleDateString("en-US") : this.datefound;
+        this.latestdate = new Date().toLocaleDateString("en-US");
     }
 }
